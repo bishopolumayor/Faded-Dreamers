@@ -560,7 +560,65 @@ class _SideBarState extends State<SideBar> {
           ),
           // space
           Spacing(
-            height: Dimensions.height100,
+            height: Dimensions.height20,
+          ),
+          // contact us
+          GestureDetector(
+            onTap: (){
+              HapticFeedback.lightImpact();
+              // authController.logout();
+              Get.toNamed(AppRoutes.getContactUsScreen());
+            },
+            child: Container(
+              margin: EdgeInsets.symmetric(
+                horizontal: Dimensions.width50 / 2,
+              ),
+              padding: EdgeInsets.symmetric(
+                vertical: Dimensions.height15,
+                horizontal: Dimensions.width15,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(Dimensions.radius30),
+                border: Border.all(
+                  color: AppColors.mainColor,
+                  width: 1,
+                ),
+              ),
+              child: Row(
+                children: [
+                  // contact us
+                  Text(
+                    'Contact us',
+                    style: TextStyle(
+                      color: AppColors.mainColor,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w300,
+                      fontSize: Dimensions.font18,
+                    ),
+                  ),
+                  // space
+                  const Expanded(
+                    child: SizedBox(),
+                  ),
+                  // // icon
+                  // Container(
+                  //   height: Dimensions.height22,
+                  //   width: Dimensions.width22,
+                  //   decoration:  const BoxDecoration(
+                  //     image: DecorationImage(
+                  //       image: AssetImage(
+                  //         'assets/images/logout.png',
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+                ],
+              ),
+            ),
+          ),
+          // space
+          Spacing(
+            height: Dimensions.height30,
           ),
         ],
       ),

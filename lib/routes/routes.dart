@@ -5,6 +5,7 @@ import 'package:faded_dreamers/screens/auth/otp_verification_screen.dart';
 import 'package:faded_dreamers/screens/auth/reset_link_sent_screen.dart';
 import 'package:faded_dreamers/screens/auth/reset_password_screen.dart';
 import 'package:faded_dreamers/screens/auth/sign_up_screen.dart';
+import 'package:faded_dreamers/screens/home/contact_us_screen.dart';
 import 'package:faded_dreamers/screens/home/faq_screen.dart';
 import 'package:faded_dreamers/screens/home/home_screen.dart';
 import 'package:faded_dreamers/screens/home/notifications_screen.dart';
@@ -40,6 +41,7 @@ class AppRoutes {
   static const String resetEmailSentScreen = '/reset-email-sent-screen';
   static const String faqScreen = '/faq-screen';
   static const String notificationsScreen = '/notifications-screen';
+  static const String contactUsScreen = '/contact-us-screen';
 
   static String getSplashScreen() => '$splashScreen';
 
@@ -78,6 +80,8 @@ class AppRoutes {
   static String getFAQScreen() => '$faqScreen';
 
   static String getNotificationsScreen() => '$notificationsScreen';
+
+  static String getContactUsScreen() => '$contactUsScreen';
 
   static final routes = [
     GetPage(
@@ -221,6 +225,13 @@ class AppRoutes {
       name: notificationsScreen,
       page: () {
         return const NotificationsScreen();
+      },
+      transition: Transition.fade,
+    ),
+    GetPage(
+      name: contactUsScreen,
+      page: () {
+        return const ContactUsScreen();
       },
       transition: Transition.fade,
     ),
