@@ -11,6 +11,7 @@ class AppConstants {
   static const String REMEMBER_KEY = 'remember-me';
   static const String USER_KEY = "user-key";
   static const String CART_KEY = "cart-key";
+  static const String CONSENT_KEY = "consent-key";
 
   static const String CONSUMER_KEY = 'ck_75311474556968a915141b995f1e8f0b55f1fd20';
   static const String CONSUMER_SECRET = 'cs_add5b971b07a9b7ab0111358e63c9d3d9dd3a790';

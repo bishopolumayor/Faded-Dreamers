@@ -25,6 +25,15 @@ class UserRepo {
     return userExists;
   }
 
+  Future<void> setConsent() async {
+    await sharedPreferences.setBool(AppConstants.CONSENT_KEY, true);
+  }
+
+  Future<bool> checkConsent() async {
+    bool consent = sharedPreferences.containsKey(AppConstants.CONSENT_KEY);
+    return consent;
+  }
+
   Future<UserModel?> getUser() async {
     String? userJson = sharedPreferences.getString(AppConstants.USER_KEY);
     if (userJson != null) {

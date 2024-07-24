@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:faded_dreamers/controllers/auth_controller.dart';
 import 'package:faded_dreamers/controllers/products_controller.dart';
+import 'package:faded_dreamers/controllers/user_controller.dart';
 import 'package:faded_dreamers/routes/routes.dart';
 import 'package:faded_dreamers/screens/home/pages/cart_page.dart';
 import 'package:faded_dreamers/screens/home/pages/home_page.dart';
@@ -26,6 +27,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   AuthController authController = Get.find<AuthController>();
+  UserController userController = Get.find<UserController>();
   ProductsController productsController = Get.find<ProductsController>();
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -56,6 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void initializeHomeScreen() async {
+    await authController.showConsent();
     if (productsController.allProducts.isEmpty) {
       await productsController.getProducts();
       await productsController.getFavouriteProducts();

@@ -4,6 +4,7 @@ import 'package:faded_dreamers/models/user_model.dart';
 import 'package:faded_dreamers/routes/routes.dart';
 import 'package:faded_dreamers/utils/colors.dart';
 import 'package:faded_dreamers/utils/dimensions.dart';
+import 'package:faded_dreamers/widgets/bar_loading_animation.dart';
 import 'package:faded_dreamers/widgets/space.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -560,7 +561,7 @@ class _SideBarState extends State<SideBar> {
           ),
           // space
           Spacing(
-            height: Dimensions.height20,
+            height: Dimensions.height15,
           ),
           // contact us
           GestureDetector(
@@ -618,7 +619,161 @@ class _SideBarState extends State<SideBar> {
           ),
           // space
           Spacing(
-            height: Dimensions.height30,
+            height: Dimensions.height15,
+          ),
+          // delete account
+          GestureDetector(
+            onTap: () async {
+              HapticFeedback.lightImpact();
+              bool isLoading = false;
+              Get.dialog(
+                Dialog(
+                  child: IntrinsicHeight(
+                    child: Stack(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.symmetric(
+                            horizontal: Dimensions.width10,
+                          ),
+                          padding: EdgeInsets.symmetric(
+                            vertical: Dimensions.height10,
+                            horizontal: Dimensions.width10,
+                          ),
+                          decoration: BoxDecoration(
+                            color: AppColors.whiteColor,
+                            borderRadius: BorderRadius.circular(Dimensions.radius10),
+                          ),
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: Dimensions.height20,
+                              ),
+                              Text(
+                                'We would hate to see you go',
+                                style: TextStyle(
+                                  color: AppColors.mainColor,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: Dimensions.font18,
+                                ),
+                              ),
+                              SizedBox(
+                                height: Dimensions.height20,
+                              ),
+                              Text(
+                                'Are you sure you want to proceed with deleting your account permanently? This cannot be undone. Your data on our servers would be deleted and a confirmation mail would be sent to you within 24 hours.',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: AppColors.blackColor,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: Dimensions.font16,
+                                ),
+                              ),
+                              SizedBox(
+                                height: Dimensions.height20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Get.back();
+                                    },
+                                    child: Text(
+                                      'Cancel',
+                                      style: TextStyle(
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: Dimensions.font16,
+                                      ),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () async {
+                                      setState(() {
+                                        isLoading = true;
+                                      });
+                                      await Future.delayed(const Duration(seconds: 3),);
+                                      setState(() {
+                                        isLoading = false;
+                                      });
+                                      authController.logout();
+                                    },
+                                    child: Text(
+                                      'Delete',
+                                      style: TextStyle(
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: Dimensions.font16,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        if(isLoading)
+                          const Center(
+                            child: BarLoadingAnimation(),
+                          ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+            child: Container(
+              margin: EdgeInsets.symmetric(
+                horizontal: Dimensions.width50 / 2,
+              ),
+              padding: EdgeInsets.symmetric(
+                vertical: Dimensions.height15,
+                horizontal: Dimensions.width15,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(Dimensions.radius30),
+                border: Border.all(
+                  color: AppColors.mainColor,
+                  width: 1,
+                ),
+              ),
+              child: Row(
+                children: [
+                  // Delete account
+                  Text(
+                    'Delete account',
+                    style: TextStyle(
+                      color: AppColors.mainColor,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w300,
+                      fontSize: Dimensions.font18,
+                    ),
+                  ),
+                  // space
+                  const Expanded(
+                    child: SizedBox(),
+                  ),
+                  // // icon
+                  // Container(
+                  //   height: Dimensions.height22,
+                  //   width: Dimensions.width22,
+                  //   decoration:  const BoxDecoration(
+                  //     image: DecorationImage(
+                  //       image: AssetImage(
+                  //         'assets/images/logout.png',
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+                ],
+              ),
+            ),
+          ),
+          // space
+          Spacing(
+            height: Dimensions.height10,
           ),
         ],
       ),
